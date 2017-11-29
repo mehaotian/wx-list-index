@@ -1,0 +1,120 @@
+/* idxList/idxList.wxss */
+
+/* 总样式  */
+
+.idxlist {
+  position: relative;
+  height: 100%;
+}
+
+.idxlist-item {
+  position: relative;
+  box-sizing: border-box;
+  font-size: 34rpx;
+  width: 100%;
+}
+
+/* 顶部样式  */
+
+.idxlist-pos-top {
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding-left: 25rpx;
+  line-height: 75rpx;
+  height: 75rpx;
+  font-size: 34rpx;  
+  color: rgba(0, 0, 0, 0.5);
+  width: 100%;
+  z-index: 10;
+  background: #f5f5f5;
+  box-sizing: border-box;
+}
+
+/* 索引样式 */
+
+.idxlist-item-title {
+  display: block;
+  padding-left: 25rpx;
+  line-height: 75rpx;
+  height: 75rpx;
+  background: #f5f5f5;
+  color: rgba(0, 0, 0, 0.5);
+  box-sizing: border-box;
+  
+}
+
+
+/* 城市列表样式 */
+
+.idxlist-item-list {
+  position: relative;
+  padding-left: 25rpx;
+  font-size: 30rpx;
+  line-height: 70rpx;
+  color: #666;
+  height: 70rpx;
+  box-sizing: border-box;
+  
+  /* border-bottom: 1px red solid; */
+}
+.idxlist-item-infeed {
+  padding-bottom: 25rpx;
+  box-sizing: border-box;
+  
+}
+.idxlist-item-list-infeed {
+ width: 100%;
+ padding-right: 80rpx;
+ box-sizing: border-box;
+  
+}
+.idxlist-item-list-infeed .list-text {
+  display: inline-block;
+  margin-left: 25rpx;
+  margin-top: 25rpx;
+  padding: 10rpx 20rpx;
+  font-size: 30rpx;
+  border-radius: 10rpx;
+  border: 1px #ccc solid ;
+  color: #666;
+  box-sizing: border-box;
+  
+}
+
+
+.idxlist-item-list:before {
+  position: absolute;
+  top: -1px;
+  right: 25rpx;
+  left: 25rpx;
+  height: 1px;
+  content: '';
+  -webkit-transform: scaleY(0.5);
+  transform: scaleY(0.5);
+  background-color: #e8e8e8;
+}
+
+.list-tab {
+  position: absolute;
+  top: 86rpx;
+  right: 10rpx;
+  display: flex;
+  flex-direction: column;
+  padding: 10rpx 5rpx;
+  border-radius: 20rpx;
+  z-index: 11;
+  background: rgba(0, 0, 0, 0.2);
+}
+
+.list-item {
+  padding: 6rpx;
+  text-align: center;
+  font-size: 25rpx;
+  color: #666;
+}
+
+.list-active {
+  color: #f19149;
+}
+
