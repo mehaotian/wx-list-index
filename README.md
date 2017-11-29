@@ -7,7 +7,10 @@
 ![img](http://omw93wh60.bkt.clouddn.com/movie.gif)
 
 #### 使用方法
+> 先下载代码 github：[源码下载地址](https://github.com/mehaotian/web/tree/master/WeChat/cityIndexList)
 
+从下载的demo目录下找到 wx-list-index 文件夹 放到自己项目的根目录下
 
+![img](http://omw93wh60.bkt.clouddn.com/movie.gif)
 
 
