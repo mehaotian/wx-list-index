@@ -23,7 +23,7 @@ cityIndexList.setting = function (callback) {
   let objJson = {
     // 向外暴露的重置数据接口
     data(data) {
-      console.log(data);
+      // console.log(data);
       if (data) {
         that.init(data); 
       }
@@ -53,6 +53,7 @@ cityIndexList.init = function (CITY) {
   let that = this;
   // 数据绑定
   // 城市
+  this.api = CITY ;
   self.setData({
     index: 0,
     'CITYINDEXLIST': {

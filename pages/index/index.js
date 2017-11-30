@@ -34,13 +34,14 @@ Page({
     ]
     // 重置数据
     city.setting(function (set) {
-      // set.data(arr); 
+      set.data(arr); 
     })
     // 点击事件
     city.tap(function (e) {
       console.log(e)
     })
 
+    console.log(city.api)
 
 
   }

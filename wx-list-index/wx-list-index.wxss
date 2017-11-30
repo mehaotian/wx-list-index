@@ -58,6 +58,8 @@
   
   /* border-bottom: 1px red solid; */
 }
+
+/* 首条数据展开样式  */
 .idxlist-item-infeed {
   padding-bottom: 25rpx;
   box-sizing: border-box;
@@ -82,7 +84,7 @@
   
 }
 
-
+/* 线条  */
 .idxlist-item-list:before {
   position: absolute;
   top: -1px;
@@ -95,6 +97,7 @@
   background-color: #e8e8e8;
 }
 
+/* 右侧选项卡样式  */
 .list-tab {
   position: absolute;
   top: 86rpx;
