@@ -5,6 +5,6 @@ module.exports = {
   /**
    * 以下功能有问题，请谨慎开启
    */
-  isTop: false,// 是否开启顶部固定
-  active: false, // 是否开启选中效果
+  isTop: true,// 是否开启顶部固定
+  active: true, // 是否开启选中效果
 };

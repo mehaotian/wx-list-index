@@ -1,7 +1,6 @@
 {
   "pages": [
-    "pages/index/index",
-    "wx-list-index/wx-list-index"
+    "pages/index/index"
   ],
   "window": {
     "backgroundTextStyle": "light",
