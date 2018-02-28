@@ -1,0 +1,13 @@
+
+<!--
+  1.需要给组件提供一个父元素并指定高度,组件高度由父元素控制。否则将出现问题
+  2.如果需要下拉刷新 ，请不要使用本组件
+
+  参数说明:
+  data [Object] : 列表所需要的数据
+  my-city [String]: 是否开启我的定位 ，默认为false ，传入城市名称。不写或者空，为关闭
+
+  -->
+ <view class='wrapper'> 
+  <list-html data="{{city}}" my-city="北京" binddetail="bindtap"></list-html>
+ </view> 

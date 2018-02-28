@@ -1,0 +1,11 @@
+/* pages/dome/dome.wxss */
+
+.wrapper {
+  height: 100vh;
+}
+/* 关闭滚动条  */
+::-webkit-scrollbar{
+  width: 0;
+  height: 0;
+  color: transparent;
+}
