@@ -92,6 +92,7 @@ Component({
         }
         newData.push({
           title: data[i].title,
+          type: data[i].type ? data[i].type:"",
           item: itemArr
         })
       }

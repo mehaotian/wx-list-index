@@ -9,5 +9,5 @@
 
   -->
  <view class='wrapper'> 
-  <list-html data="{{city}}" my-city="北京" binddetail="bindtap"></list-html>
+  <list-html data="{{city}}" binddetail="bindtap"></list-html>
  </view> 

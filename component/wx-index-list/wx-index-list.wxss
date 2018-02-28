@@ -124,3 +124,12 @@
   margin: 10rpx;
   /* margin-right: 20rpx; */
 }
+
+
+/* 无数据  */
+.nodata {
+  padding-top: 200rpx;
+  text-align: center;
+  font-size: 32rpx;
+  color: #ddd;
+}

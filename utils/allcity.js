@@ -2,6 +2,7 @@
 var city = [
   {
     title:"热门城市",
+    type:'hot',
     item: [
 
       {
