@@ -11,6 +11,16 @@ Component({
     myCity: {
       type: String,
       value: "",
+    },
+    // 用于外部组件搜索使用
+    search:{
+      type:String,
+      value:"",
+      observer: function (newVal, oldVal) { 
+        console.log(newVal)
+        this.value = newVal;
+        this.searchMt();
+      }
     }
   },
 
@@ -73,7 +83,10 @@ Component({
     },
     // 基础搜索功能
     searchMt() {
-
+      this._search();
+    },
+    _search(){
+      console.log("搜索")
       let data = this.data.data;
       let newData = [];
       for (let i = 0; i < data.length; i++) {
@@ -92,12 +105,11 @@ Component({
         }
         newData.push({
           title: data[i].title,
-          type: data[i].type ? data[i].type:"",
+          type: data[i].type ? data[i].type : "",
           item: itemArr
         })
       }
       this.resetRight(newData);
-
     },
     // 城市定位
     locationMt() {

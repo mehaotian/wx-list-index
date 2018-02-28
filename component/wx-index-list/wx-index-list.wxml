@@ -10,7 +10,7 @@
   </view>
   
   <block wx:if="{{list.length != 0 }}">
-    <scroll-view class='list-scroll {{config.search?"top":""}}' scroll-y="true" scroll-into-view="{{jumpNum}}" scroll-with-animation="{{config.animation}}">
+    <scroll-view class="list-scroll {{config.search?'top':''}}" scroll-y="true" scroll-into-view="{{jumpNum}}" scroll-with-animation="{{config.animation}}">
       <!-- 我的位置  -->
       <view wx:if="{{myCity}}">
         <view class='list-title'>我的位置</view>
