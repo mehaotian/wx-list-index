@@ -7,6 +7,9 @@ Component({
     data: {
       type: Object,
       value: {},
+      observer: function (newVal, oldVal) { 
+        this.resetRight(newVal);
+      }
     },
     myCity: {
       type: String,
