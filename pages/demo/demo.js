@@ -4,9 +4,21 @@ let City = require('../../utils/allcity.js');
 Page({
 
   data: {
-    city:City
+    city:[]
   },
+  onLoad(){
+    // wx.showLoading({
+    //   title: '加载数据中...',
+    // })
+    // 模拟服务器请求异步加载数据
+    // setTimeout(()=>{
+      this.setData({
+        city: City
+      })
+    //   wx.hideLoading()
+    // },2000)
 
+  },
   bindtap(e){
     console.log(e.detail)
   },

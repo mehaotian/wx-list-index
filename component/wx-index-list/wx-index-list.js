@@ -7,7 +7,7 @@ Component({
     data: {
       type: Object,
       value: {},
-      observer: function (newVal, oldVal) { 
+      observer: function(newVal, oldVal) {
         this.resetRight(newVal);
       }
     },
@@ -16,10 +16,10 @@ Component({
       value: "",
     },
     // 用于外部组件搜索使用
-    search:{
-      type:String,
-      value:"",
-      observer: function (newVal, oldVal) { 
+    search: {
+      type: String,
+      value: "",
+      observer: function(newVal, oldVal) {
         console.log(newVal)
         this.value = newVal;
         this.searchMt();
@@ -29,20 +29,28 @@ Component({
 
   data: {
     list: [],
-    rightArr: [],// 右侧字母展示
-    jumpNum: '',//跳转到那个字母
-    myCityName: '请选择' // 默认我的城市
-
+    rightArr: [], // 右侧字母展示
+    jumpNum: '', //跳转到那个字母
+    myCityName: '请选择', // 默认我的城市
+    topGroup: [], // 内容高度数据
+    pos: {
+      isTop: false,
+      y: 0,
+      oldIndex: -1
+    },
+    listIndex: 0
   },
   ready() {
-    let data = this.data.data;
-    this.resetRight(data);
-    if (this.data.myCity) {
-      this.getCity()
-    }
+    // let data = this.data.data;
+    // this.resetRight(data);
+    // if (this.data.myCity) {
+    //   this.getCity()
+    // }
   },
   methods: {
-    // 数据重新渲染
+    /**
+     * 数据重新渲染
+     */
     resetRight(data) {
       let rightArr = []
       for (let i in data) {
@@ -51,30 +59,39 @@ Component({
       this.setData({
         list: data,
         rightArr
-      })
-    },
-    getCity() {
-      wx.getLocation({
-        type: 'wgs84',
-        success: function (res) {
-          this.latitude = res.latitude;
-          this.longitude = res.longitude;
-          // console.log(res)
+      }, () => {
+        if (data.length != 0) {
+          this.queryMultipleNodes();
         }
       })
     },
-    // 右侧字母点击事件
+    // getCity() {
+    //   wx.getLocation({
+    //     type: 'wgs84',
+    //     success: function (res) {
+    //       this.latitude = res.latitude;
+    //       this.longitude = res.longitude;
+    //       // console.log(res)
+    //     }
+    //   })
+    // },
+    /**
+     * 右侧字母点击事件
+     */
     jumpMt(e) {
       let jumpNum = e.currentTarget.dataset.id;
-      this.setData({ jumpNum });
+      this.setData({
+        jumpNum
+      });
     },
-    // 列表点击事件
+    /**
+     * 列表点击事件
+     */
     detailMt(e) {
       let detail = e.currentTarget.dataset.detail;
-      
       let myEventOption = {
-        bubbles: false,//事件是否冒泡
-        composed: false,//事件是否可以穿越组件边界
+        bubbles: false, //事件是否冒泡
+        composed: false, //事件是否可以穿越组件边界
         capturePhase: false //事件是否拥有捕获阶段
       } // 触发事件的选项
       this.triggerEvent('detail', detail, myEventOption)
@@ -88,8 +105,10 @@ Component({
     searchMt() {
       this._search();
     },
-    _search(){
-      console.log("搜索")
+    /**
+     * 搜索相关逻辑实现
+     */
+    _search() {
       let data = this.data.data;
       let newData = [];
       for (let i = 0; i < data.length; i++) {
@@ -117,6 +136,64 @@ Component({
     // 城市定位
     locationMt() {
       // TODO 暂时没有实现 定位自己的城市，需要引入第三方api
+    },
+    /**
+     * 监听滚动
+     */
+    scroll(e) {
+      let top = e.detail.scrollTop
+      let index = this.currentIndex(top)
+      let list = this.data.topGroup
+      let distance = top - list[this.data.listIndex]
+      // 渲染滚动索引
+      if (index !== this.data.pos.oldIndex) {
+        // console.log(index)
+        this.setData({
+          'pos.oldIndex': index,
+          listIndex: index
+        })
+      }
+      if (distance < 50){
+        console.log(distance)
+      }
+    },
+    /**
+     * 获取当前滚动索引
+     */
+    currentIndex(y) {
+      let listHeight = this.data.topGroup
+      for (let i = 0; i < listHeight.length; i++) {
+        let height1 = listHeight[i]
+        let height2 = listHeight[i + 1]
+        if (!height2 || (y >= height1 && y < height2)) {
+          return i
+        }
+      }
+      
+      return 0
+    },
+    /**
+     * 获取节点信息
+     */
+    queryMultipleNodes() {
+      const query = wx.createSelectorQuery().in(this);
+      query.selectAll('.fixed-title-hock').boundingClientRect((res) => {
+        res.forEach(function(rect) {
+          rect.top // 节点的上边界坐标
+        })
+      }).exec((e) => {
+        let arr = []
+        e[0].forEach((rect) => {
+          let num = 0
+          if (rect.top !== 0) {
+            num = rect.top - 45
+          }
+          arr.push(num)
+        })
+        this.setData({
+          topGroup: arr
+        })
+      })
     }
 
   }

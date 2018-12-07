@@ -45,23 +45,26 @@
 
 .list-right-wrapper {
   position: absolute;
-  top: 100rpx;
+  top: 120rpx;
   right: 20rpx;
-  padding: 10rpx 0;
-  border-radius: 20rpx;
+  padding: 20rpx 0;
+  border-radius: 40rpx;
   z-index: 2;
   background: #ddd;
+  box-sizing: border-box;
 }
 
 .right-item {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 2rpx 10rpx;
+  padding: 5rpx 10rpx;
   font-size: 26rpx;
   color: #666;
 }
-
+.right-item.active {
+  color: red
+}
 .list-search {
   position: absolute;
   top: 0;
