@@ -1,45 +1,46 @@
-<wxs src="config.wxs" module="config" />
-
 <view class='list-warpper'>
-  <!-- 搜索框 -->
-  <view wx:if="{{config.search}}" class='list-search'>
-    <view class='list-search-box'>
-      <icon type="search" size="15" />
-      <input placeholder="输入您要搜索的城市" bindinput='input' />
-    </view>
-    <button class='search-button' catchtap='searchMt'>搜索</button>
-  </view>
-  <!-- 搜索到所有数据的时候显示 -->
-  <block wx:if="{{list.length != 0 }}">
-    <scroll-view class="list-scroll {{config.search?'top':''}}" scroll-y="true" scroll-into-view="{{jumpNum}}" scroll-with-animation="{{config.animation}}" bindscroll="scroll">
-      <!-- 我的位置  -->
-      <view wx:if="{{myCity}}">
-        <view class='list-title'>我的位置</view>
-        <view class='list-horizontal'>
-          <view class='list-name {{idx === 0 ?"":"border"}}' data-detail="{{city}}" catchtap='locationMt'>
-            {{myCity}}
-          </view>
+    <!-- 搜索框 -->
+    <view wx:if="{{config.search}}" class='list-search' style="height:{{config.searchHeight}}px">
+        <view class='list-search-box'>
+            <icon type="search" size="15" />
+            <input placeholder="输入您要搜索的城市" bindinput='input' />
         </view>
-      </view>
-      <!-- 主体内容显示 -->
-      <view id="{{'index'+index}}" wx:for="{{list}}" wx:key="key">
-        <view class='list-title fixed-title-hock'>{{item.title}}</view>
-        <view class='{{index===0&&config.horizontal&&item.type==="hot"?"list-horizontal":""}}'>
-          <view class='list-name {{idx === 0 ?"":"border"}}' wx:for="{{item.item}}" wx:for-item="city" wx:for-index="idx" wx:key="city" data-detail="{{city}}" catchtap='detailMt'>
-            {{city.name}}
-          </view>
-        </view>
-      </view>
-    </scroll-view>
-    <!-- 右侧索引显示 -->
-    <view class='list-right-wrapper'>
-      <view class='right-item {{listIndex == index?"active":""}}' wx:for="{{rightArr}}" wx:key="rightArr" data-id="{{'index'+index}}" catchtap='jumpMt'>
-        {{rightArr[index]}}
-      </view>
+        <button class='search-button' catchtap='searchMt'>搜索</button>
     </view>
-  </block>
-  <!-- 没有搜索到数据的时候显示 -->
-  <block wx:else>
-    <view class='nodata'>没有搜索到相关的数据哦</view>
-  </block>
+    <view class='fiexed-box list-title' style='transform: translateY(-{{moveDistance}}px)'>
+        {{list[listIndex].title}}
+    </view>
+    <!-- 搜索到所有数据的时候显示 -->
+    <block wx:if="{{list.length != 0 }}">
+        <scroll-view class="list-scroll {{config.search?'top':''}}" style=" padding-top:{{config.search?config.searchHeight:0}}px" scroll-y="true" scroll-into-view="{{jumpNum}}" scroll-with-animation="{{config.animation}}" bindscroll="scroll">
+            <!-- 我的位置  -->
+            <view wx:if="{{myCity}}">
+                <view class='list-title fixed-title-hock'>我的位置</view>
+                <view class='list-horizontal'>
+                    <view class='list-name {{idx === 0 ?"":"border"}}' data-detail="{{city}}" catchtap='locationMt'>
+                        {{myCity}}
+                    </view>
+                </view>
+            </view>
+            <!-- 主体内容显示 -->
+            <view id="{{'index'+index}}" wx:for="{{list}}" wx:key="key">
+                <view class='list-title fixed-title-hock'>{{item.title}}</view>
+                <view class='{{index===0&&config.horizontal&&item.type==="hot"?"list-horizontal":""}}'>
+                    <view class='list-name {{idx === 0 ?"":"border"}}' wx:for="{{item.item}}" wx:for-item="city" wx:for-index="idx" wx:key="city" data-detail="{{city}}" catchtap='detailMt'>
+                        {{city.name}}
+                    </view>
+                </view>
+            </view>
+        </scroll-view>
+        <!-- 右侧索引显示 -->
+        <view class='list-right-wrapper'>
+            <view class='right-item {{listIndex == index?"active":""}}' wx:for="{{rightArr}}" wx:key="rightArr" data-id="{{'index'+index}}" catchtap='jumpMt'>
+                {{rightArr[index]}}
+            </view>
+        </view>
+    </block>
+    <!-- 没有搜索到数据的时候显示 -->
+    <block wx:else>
+        <view class='nodata'>没有搜索到相关的数据哦</view>
+    </block>
 </view>
