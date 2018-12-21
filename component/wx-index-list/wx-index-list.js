@@ -25,8 +25,6 @@ Component({
                 search: true, // 是否开启搜索
                 searchHeight: 45, // 搜索条高度
                 suctionTop: true // 是否开启标题吸顶
-
-
             }
         },
         /**
@@ -214,6 +212,7 @@ Component({
          * 获取节点信息
          */
         queryMultipleNodes() {
+          let self = this 
             const query = wx.createSelectorQuery().in(this);
             query.selectAll('.fixed-title-hock').boundingClientRect((res) => {
                 res.forEach(function(rect) {
@@ -224,7 +223,7 @@ Component({
                 e[0].forEach((rect) => {
                     let num = 0
                     if (rect.top !== 0) {
-                        num = rect.top - (this.data.config.search ? this.data.config.searchHeight : 0)
+                      num = rect.top - (self.data.config.search ? self.data.config.searchHeight : 0)
                     }
                     arr.push(num)
                 })
