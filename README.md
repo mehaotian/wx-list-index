@@ -31,7 +31,6 @@ component 文件夹下 `` wx-index-list `` 是组件目录，有四个文件
 ```
 component
   -- wx-index-list
-    -- config.wxs // 组件配置文件
     -- wx-index-list.js   // 组件逻辑js文件，所需属性值这里是外部传入
     -- wx-index-list.json // 组件json文件，注册该文件夹下一组文件 为 自定义组件
     -- wx-index-list.wxml // 自定义组件的内部WXML结构
@@ -86,7 +85,12 @@ component
 #### 属性
 *  `` data [object]``  组件需要的数据，这里是个json对象
 *  `` my-city [string] `` 是否开启我的定位 ，默认为不开启 ，需要传入城市名称。不写或者空，为不开启
-
+*  `` config [object]``  配置项
+   -     horizontal:   默认值 true, // 第一个选项是否横排显示（一般第一个数据选项为 热门城市，常用城市之类 ，开启看需求）
+   -     animation: 默认值 true, // 过渡动画是否开启
+   -     search: 默认值 true, // 是否开启搜索
+   -     searchHeight: 默认值 45 // 搜索条高度 ，建议不要修改别的高度
+   -     suctionTop:默认值 true // 是否开启标题吸顶
 
 #### 事件
 *  `` binddetail `` 列表点击事件，返回相关值
@@ -97,7 +101,7 @@ component
 ```html
 <!-- pages/demo/demo.wxml -->
 <view class='wrapper'> 
-  <list-html data="{{city}}" my-city="北京" binddetail="binddetail"></list-html>
+  <list-html data="{{city}}" my-city="北京" binddetail="binddetail" config="{{config}}"></list-html>
 </view> 
 
 ```
@@ -114,9 +118,27 @@ let City = require('../../utils/allcity.js');
 Page({
 
   data: {
-    city:City
+    city:City,
+    config: {
+            horizontal: false, // 第一个选项是否横排显示（一般第一个数据选项为 热门城市，常用城市之类 ，开启看需求）
+            animation: false, // 过渡动画是否开启
+            search: false, // 是否开启搜索
+            searchHeight: 45, // 搜索条高度
+            suctionTop: false // 是否开启标题吸顶
+        }
   },
-
+  onLoad() {
+      wx.showLoading({
+          title: '加载数据中...',
+        })
+        // 模拟服务器请求异步加载数据
+          setTimeout(()=>{
+               this.setData({
+                city: CityÏ
+               })
+              wx.hideLoading()
+          },2000)
+   },
   binddetail(e){
     console.log(e.detail)
     // 返回 例 :{name: "北京", key: "B", test: "testValue"}
@@ -164,23 +186,37 @@ Page({
 > 如果需要修改数据格式，需要去修改组件 相应的wxml 和 js 。如果没有特殊要求，请按照以上数据格式使用。
 
 
-5. 组件配置
-组件提供了一些默认的设置
-
-```js
-// component/wx-index-list/config.wxs
-module.exports = {
-  horizontal: false, // 第一个选项是否横排显示（一般第一个数据选项为 热门城市，常用城市之类 ，开启看需求）
-  animation:false ,// 过渡动画是否开启
-  search:true ,// 是否开启搜索
-};
-
-
-```
-
 ***
 
-本来城市索引列表也不是很难写的一个功能，这里写出来是为了给大家图省事，如有需要我会继续更新。如果有什么问题可以留言给我，我看到会给大家回复。
+本来城市索引列表也不是很难写的一个功能，这里写出来是为了给大家图省事，如有需要我会继续更新。如果有什么问题可以留言给我，我看到会给大家回复。 我建了一个 qq 群  ：166188735 ，感兴趣的同学可以加一下 ，可以一起讨论小程序，共同进步啊！然后就不要加私人微信了，突然发现加的人多了也有点苦恼啊 【手动笑脸】
+
+
+# 更新日志
+##v1.0.1 (2018-12-21更新)
+ ##### 1. 添加左右联动 
+ ##### 2. 添加标题吸顶
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

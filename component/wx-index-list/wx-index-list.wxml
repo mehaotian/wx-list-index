@@ -7,7 +7,7 @@
         </view>
         <button class='search-button' catchtap='searchMt'>搜索</button>
     </view>
-    <view class='fiexed-box list-title' style='transform: translateY(-{{moveDistance}}px);top:{{config.search?90:0}}rpx'>
+    <view wx:if="{{config.suctionTop}}" class='fiexed-box list-title' style='transform: translateY(-{{moveDistance}}px);top:{{config.search?90:0}}rpx'>
         {{list[listIndex].title}}
     </view>
     <!-- 搜索到所有数据的时候显示 -->

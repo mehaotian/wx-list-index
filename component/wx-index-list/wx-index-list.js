@@ -23,7 +23,10 @@ Component({
                 horizontal: true, // 第一个选项是否横排显示（一般第一个数据选项为 热门城市，常用城市之类 ，开启看需求）
                 animation: true, // 过渡动画是否开启
                 search: true, // 是否开启搜索
-                searchHeight: 45 // 搜索条高度
+                searchHeight: 45, // 搜索条高度
+                suctionTop: true // 是否开启标题吸顶
+
+
             }
         },
         /**
@@ -72,13 +75,13 @@ Component({
          */
         resetRight(data) {
             let rightArr = []
-            if(this.data.myCity){
+            if (this.data.myCity) {
                 this.data.data.unshift({
-                    title:'我的定位',
-                    type:'me',
-                    item:[{
-                        name:'点击获取我的位置',
-                        key:'我的定位'
+                    title: '我的定位',
+                    type: 'me',
+                    item: [{
+                        name: '点击获取我的位置',
+                        key: '我的定位'
                     }]
                 })
             }
