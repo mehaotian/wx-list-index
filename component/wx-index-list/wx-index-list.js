@@ -30,8 +30,8 @@ Component({
          * 是否定位我的位置
          */
         myCity: {
-            type: String,
-            value: "",
+            type: Boolean,
+            value: false,
         },
         // 用于外部组件搜索使用
         search: {
@@ -72,6 +72,16 @@ Component({
          */
         resetRight(data) {
             let rightArr = []
+            if(this.data.myCity){
+                this.data.data.unshift({
+                    title:'我的定位',
+                    type:'me',
+                    item:[{
+                        name:'点击获取我的位置',
+                        key:'我的定位'
+                    }]
+                })
+            }
             for (let i in data) {
                 rightArr.push(data[i].title.substr(0, 1));
             }
@@ -164,7 +174,6 @@ Component({
             let index = this.currentIndex(top)
             let list = this.data.topGroup
             let distance = top - list[this.data.listIndex]
-          
             let num = -(list[this.data.listIndex + 1] - top - 40)
             // 渲染滚动索引
             if (index !== this.data.listIndex) {
@@ -177,19 +186,12 @@ Component({
                 // 如果监听到 index 的变化 ，一定要return ，否则吸顶会先变化文字后运动，会闪烁
                 return
             }
-            if (num < 0) {
-                num = 0
-            } 
+            if (num < 0) num = 0
             if (num !== this.data.moveDistance) {
                 this.setData({
                     moveDistance: num,
                 })
             }
-
-
-           
-
-
         },
         /**
          * 获取当前滚动索引
@@ -203,7 +205,6 @@ Component({
                     return i
                 }
             }
-
             return 0
         },
         /**

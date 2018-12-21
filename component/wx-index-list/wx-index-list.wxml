@@ -7,25 +7,25 @@
         </view>
         <button class='search-button' catchtap='searchMt'>搜索</button>
     </view>
-    <view class='fiexed-box list-title' style='transform: translateY(-{{moveDistance}}px)'>
+    <view class='fiexed-box list-title' style='transform: translateY(-{{moveDistance}}px);top:{{config.search?90:0}}rpx'>
         {{list[listIndex].title}}
     </view>
     <!-- 搜索到所有数据的时候显示 -->
     <block wx:if="{{list.length != 0 }}">
         <scroll-view class="list-scroll {{config.search?'top':''}}" style=" padding-top:{{config.search?config.searchHeight:0}}px" scroll-y="true" scroll-into-view="{{jumpNum}}" scroll-with-animation="{{config.animation}}" bindscroll="scroll">
             <!-- 我的位置  -->
-            <view wx:if="{{myCity}}">
+            <!-- <view wx:if="{{myCity}}">
                 <view class='list-title fixed-title-hock'>我的位置</view>
                 <view class='list-horizontal'>
                     <view class='list-name {{idx === 0 ?"":"border"}}' data-detail="{{city}}" catchtap='locationMt'>
                         {{myCity}}
                     </view>
                 </view>
-            </view>
+            </view> -->
             <!-- 主体内容显示 -->
             <view id="{{'index'+index}}" wx:for="{{list}}" wx:key="key">
                 <view class='list-title fixed-title-hock'>{{item.title}}</view>
-                <view class='{{index===0&&config.horizontal&&item.type==="hot"?"list-horizontal":""}}'>
+                <view class='{{config.horizontal&&item.type==="hot" || item.type==="hot"?"list-horizontal":""}}'>
                     <view class='list-name {{idx === 0 ?"":"border"}}' wx:for="{{item.item}}" wx:for-item="city" wx:for-index="idx" wx:key="city" data-detail="{{city}}" catchtap='detailMt'>
                         {{city.name}}
                     </view>
